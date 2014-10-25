@@ -12,15 +12,14 @@ namespace Models
         public string GeneralInfo { get; set; }
         public string LinkToSource { get; set; }
 
-        [Required]
         public virtual Picture Picture { get; set; }
         public virtual ProducerInfo ProducerInfo { get; set; }
         public virtual ICollection<Song> Songs { get; set; }
 
-        [Required]
         public Genre Genre { get; set; }
-        [Required]
+        public int? GenreId { get; set; }
+
         public Country Country { get; set; }
-        public string Region { get; set; }
+        public int? CountryId { get; set; }
     }
 }

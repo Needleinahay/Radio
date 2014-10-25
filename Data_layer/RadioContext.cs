@@ -9,6 +9,9 @@ namespace Data_layer
         public DbSet<Producer> Producers { get; set; }
         public DbSet<ProducerInfo> ProducerInfos { get; set; }
         public DbSet<Song> Songs { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
     }
 }

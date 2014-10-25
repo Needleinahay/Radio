@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.IO;
 using Models;
@@ -11,98 +12,178 @@ namespace Data_layer
     {
         protected override void Seed(RadioContext context)
         {
-            Picture pic1 = new Picture { PictureId = 1, PicturePath = "/Content/logo.jpg" };
-            Picture pic2 = new Picture { PictureId = 2, PicturePath = "/Content/front.jpg" };
-            Picture pic3 = new Picture { PictureId = 3, PicturePath = "/Content/side.jpg" };
-            List<Song> songs1 = new List<Song>();
 
-            songs1.Add(new Song
-            {
-                SongId = 1,
-                AuthorId = 1,
-                Notes = "Some notes",
-                Title = "My song",
-                SongPath = "/Content/1.mp3"
-            });
-            songs1.Add(new Song
-            {
-                SongId = 2,
-                AuthorId = 1,
-                Notes = "Some notes!!",
-                Title = "My second song",
-                SongPath = "/Content/2.mp3"
-            });
-            List<Song> songs2 = new List<Song>();
-            songs2.Add(new Song
-            {
-                SongId = 3,
-                AuthorId = 2,
-                Notes = "Some notes!!",
-                Title = "My second song",
-                SongPath = "/Content/01.mp3"
-            });
-            List<Song> songs3 = new List<Song>();
-            songs3.Add(new Song
-            {
-                SongId = 4,
-                AuthorId = 3,
-                Notes = "Some notes!!",
-                Title = "My second song",
-                SongPath = "/Content/02.mp3"
-            });
+            #region Setting songs
+
+            Song one = new Song
+                {
+                    Notes = "Some notes",
+                    Title = "My song",
+                    SongPath = "/Content/1.mp3"
+                };
+            Song two = new Song
+                {
+                    Notes = "Some notes!!",
+                    Title = "My second song",
+                    SongPath = "/Content/2.mp3"
+                };
+            Song three = new Song
+                {
+                    Notes = "Some notes!!",
+                    Title = "My second song",
+                    SongPath = "/Content/01.mp3"
+                };
+            Song four = new Song
+                {
+                    Notes = "Some notes!!",
+                    Title = "My second song",
+                    SongPath = "/Content/02.mp3"
+                };
+            context.Songs.Add(one);
+            context.Songs.Add(two);
+            context.Songs.Add(three);
+            context.Songs.Add(four);
 
 
-            context.Authors.Add(new Author
-            {
-                AuthorId = 1,
-                Email = "Test@test.com",
-                GeneralInfo = "General Info place...",
-                Title = "The Band!",
-                LinkToSource = "http://band.com",
-                Picture = pic1,
-                ProducerInfo = new ProducerInfo(){PhoneNumber = "123456", Schedule = "No plans"},
-                Songs = songs1
-            });
-            context.Authors.Add(new Author
-            {
-                AuthorId = 2,
-                Email = "Tesdet@test.com",
-                GeneralInfo = "General Info place...",
-                Title = "Band 2",
-                LinkToSource = "http://2band.com",
-                Picture = pic2,
-                ProducerInfo = new ProducerInfo() { PhoneNumber = "123456", Schedule = "No plans" },
-                Songs = songs2
-            });
-            context.Authors.Add(new Author
-            {
-                AuthorId = 3,
-                Email = "Tesddet@test.com",
-                GeneralInfo = "General Info place...",
-                Title = "Band 3",
-                LinkToSource = "http://3band.com",
-                Picture = pic3,
-                ProducerInfo = new ProducerInfo() { PhoneNumber = "123456", Schedule = "No plans" },
-                Songs = songs3
-            });
+            #endregion
+
+            #region Setting countries
+
+            Region Poltava = new Region() {RegionName = "Poltava"};
+            Region Cherkassy = new Region() {RegionName = "Cherkassy"};
+            Region California = new Region() {RegionName = "California"};
+            context.Regions.Add(Poltava);
+            context.Regions.Add(Cherkassy);
+            context.Regions.Add(California);
+
+            Country Ukraine = new Country()
+                {
+                    CountryName = "Ukraine",
+                    Regions = new List<Region> {Poltava, Cherkassy},
+                };
+            Country USA = new Country()
+                {
+                    CountryName = "USA",
+                    Regions = new List<Region> {California},
+                };
+            context.Countries.Add(Ukraine);
+            context.Countries.Add(USA);
+
+            #endregion
+
+            #region Setting genres
+
+            Genre Rock = new Genre
+                {
+                    NameOfGenre = "Rock"
+                };
+            context.Genres.Add(Rock);
+            Genre Pop = new Genre
+                {
+                    NameOfGenre = "Pop"
+                };
+            context.Genres.Add(Pop);
+
+            #endregion
+
+            #region Setting logos
+
+            Picture pic1 = new Picture
+                {
+                    PicturePath = "/Content/logo.jpg"
+                };
+            Picture pic2 = new Picture
+                {
+                    PicturePath = "/Content/front.jpg"
+                };
+            Picture pic3 = new Picture
+                {
+                    PicturePath = "/Content/side.jpg"
+                };
             context.Pictures.Add(pic1);
             context.Pictures.Add(pic2);
             context.Pictures.Add(pic3);
-            context.Songs.Add(songs1[0]);
-            context.Songs.Add(songs1[1]);
-            context.Songs.Add(songs2[0]);
-            context.Songs.Add(songs3[0]);
+
+            #endregion
+
+            #region Setting info for producer
+
+            ProducerInfo info1 = new ProducerInfo
+                {
+                    PhoneNumber = "(099)111-22-33",
+                    Schedule = "No plans for nearest future",
+                };
+            ProducerInfo info2 = new ProducerInfo
+                {
+                    PhoneNumber = "(050)111-22-33",
+                    Schedule = "Busy till the end of the week"
+                };
+            ProducerInfo info3 = new ProducerInfo
+                {
+                    PhoneNumber = "(066)111-22-33",
+                    Schedule = "Just call us!"
+                };
+
+            #endregion
+
+            #region Setting authors
+
+            context.Authors.Add(new Author
+                {
+                    Email = "Test@test.com",
+                    GeneralInfo = "General Info place...",
+                    Title = "The Band!",
+                    LinkToSource = "http://band.com",
+                    Picture = pic1,
+                    ProducerInfo = info1,
+                    Country = Ukraine,
+                    Genre = Rock,
+                    Songs = new List<Song>{ one, two },
+
+                });
+            context.Authors.Add(new Author
+                {
+                    Email = "Tesdet@test.com",
+                    GeneralInfo = "General Info place...",
+                    Title = "Band 2",
+                    LinkToSource = "http://2band.com",
+                    Picture = pic2,
+                    ProducerInfo = info2,
+                    Songs = new List<Song>{ three },
+                    Country = USA,
+                    Genre = Rock
+                });
+            context.Authors.Add(new Author
+                {
+                    Email = "Tesddet@test.com",
+                    GeneralInfo = "General Info place...",
+                    Title = "Band 3",
+                    LinkToSource = "http://3band.com",
+                    Picture = pic3,
+                    ProducerInfo = info3,
+                    Songs = new List<Song>{ four },
+                    Country = USA,
+                    Genre = Rock
+                });
+
+            #endregion
+
+            #region Setting producers
+
             context.Producers.Add(new Producer
-            {
-                Email = "producer@email.com",
-                PhoneNumber = "2345456",
-                FirstName = "This",
-                LastName = "Producer",
-                LinkToOrg = "http://org.com",
-                IsApproved = false,
-                Organization = "EMI",
-                ProducerId = 1
-            });
+                {
+                    Email = "producer@email.com",
+                    PhoneNumber = "2345456",
+                    FirstName = "This",
+                    LastName = "Producer",
+                    LinkToOrg = "http://org.com",
+                    IsApproved = false,
+                    Organization = "EMI",
+                    ProducerId = 1
+                });
+
+            #endregion
+
             base.Seed(context);
         }
     }
