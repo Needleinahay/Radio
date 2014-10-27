@@ -10,9 +10,9 @@ namespace Radio.Controllers
     public class MainPageController : Controller
     {
         private Repository repository;
-        public MainPageController(RadioContext context)
+        public MainPageController()
         {
-            repository = new Repository(context);
+            repository = new Repository(new RadioContext());
         }
         //
         // GET: /MainPage/
