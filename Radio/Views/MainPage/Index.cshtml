@@ -1,8 +1,22 @@
 ﻿@model Models.MainPageVM
-
-@{
-    ViewBag.Title = "Welcome";
-    Layout = "_Layout";
+<h2>What should I play?</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.LabelFor(x => x.Countries)
+        @Html.DropDownListFor(x => x.CountrySelected, Model.Countries, "- Select -")
+        @Html.ValidationMessageFor(x => x.CountrySelected);
+    </p>
+    <p>
+        @Html.LabelFor( x => x.Genres)
+        @Html.DropDownListFor(x => x.GenreSelected, Model.Genres)
+        @Html.ValidationMessageFor(x => x.GenreSelected);
+    </p>
+    
+     <p>
+        <input type="submit" value="Play" />
+    </p>
 }
-
-<h2>title</h2>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

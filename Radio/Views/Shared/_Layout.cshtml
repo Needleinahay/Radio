@@ -7,10 +7,35 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    @RenderBody()
+    <body>
+        <header>
+            <div class="content-wrapper header-color">
+                <div class="float-left">
+                    <p class="site-title" id="title">@Html.ActionLink("Radio", "Index", "MainPage")</p><span class="slogan">New ways of music</span>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        
+                    </section>
+                    <nav>
+                        
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <nav>
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-</body>
+        </nav>
+        <div id="body">
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - All rights seem to be reserved...</p>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
