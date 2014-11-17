@@ -493,7 +493,7 @@ textarea {
 
 .message-error {
     clear: both;
-    color: #e80c4d;
+    color: #660000;
     font-size: 1.1em;
     font-weight: bold;
     margin: 20px 0 10px 0;
@@ -507,13 +507,14 @@ textarea {
 }
 
 .error {
-    color: #e80c4d;
+    color: #660000;
 }
 
 /* styles for validation helpers */
 .field-validation-error {
-    color: #e80c4d;
+    color: #880000;
     font-weight: bold;
+    color: #880000;
 }
 
 .field-validation-valid {
@@ -522,6 +523,7 @@ textarea {
 
 input.input-validation-error {
     border: 1px solid #e80c4d;
+    color: red;
 }
 
 input[type="checkbox"].input-validation-error {

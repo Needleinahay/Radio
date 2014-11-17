@@ -5,12 +5,12 @@
     <p>
         @Html.LabelFor(x => x.Countries)
         @Html.DropDownListFor(x => x.CountrySelected, Model.Countries, "- Select -")
-        @Html.ValidationMessageFor(x => x.CountrySelected);
+        @Html.ValidationMessageFor(x => x.CountrySelected)
     </p>
     <p>
         @Html.LabelFor( x => x.Genres)
-        @Html.DropDownListFor(x => x.GenreSelected, Model.Genres)
-        @Html.ValidationMessageFor(x => x.GenreSelected);
+        @Html.DropDownListFor(x => x.GenreSelected, Model.Genres, "- Select -")
+        @Html.ValidationMessageFor(x => x.GenreSelected)
     </p>
     
      <p>

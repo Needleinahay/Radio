@@ -45,5 +45,11 @@ namespace Data_layer
             toReturn.Genres = GenresPossible;
             return toReturn;
         }
+
+        public IEnumerable<Song> GetFilteredSongs(int country, int genre)
+        {
+            var songs = db.Songs.Where(x => x.Author.Country.CountryId == country && x.)
+        }
+        
     }
 }

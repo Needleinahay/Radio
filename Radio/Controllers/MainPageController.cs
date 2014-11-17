@@ -16,6 +16,15 @@ namespace Radio.Controllers
 
         #endregion
 
+        #region Properties
+
+        private Repository Repository
+        {
+            get { return _repository; }
+        }
+
+        #endregion
+
         #region Ctor
 
         public MainPageController()
@@ -28,12 +37,13 @@ namespace Radio.Controllers
 
         public ActionResult Index()
         {
-            return View(_repository.GetMainPage());
+            return View(Repository.GetMainPage());
         }
 
         [HttpPost]
         public ActionResult Index(MainPageVM parameters)
         {
+            var songs = Repository.GetFilteredSongs(parameters.CountrySelected, parameters.GenreSelected);
             return View();
         }
 
