@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Data_layer;
 using Models;
@@ -10,6 +8,12 @@ namespace Radio.Controllers
 {
     public class MainPageController : Controller
     {
+        #region Consts
+
+        private const string Radio = "My Radio";
+
+        #endregion
+
         #region Fields
 
         private readonly Repository _repository;
@@ -34,17 +38,46 @@ namespace Radio.Controllers
 
         #endregion
 
-
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
+            ViewBag.Title = Radio;
             return View(Repository.GetMainPage());
         }
 
+        /// <summary>
+        /// Indexes the specified parameters.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(MainPageVM parameters)
         {
-            var songs = Repository.GetFilteredSongs(parameters.CountrySelected, parameters.GenreSelected);
-            return View();
+            return RedirectToAction(PlaySong(parameters.CountrySelected, parameters.GenreSelected, null).ToString());
+        }
+
+        /// <summary>
+        /// Plays the song.
+        /// </summary>
+        /// <param name="country">The country.</param>
+        /// <param name="genre">The genre.</param>
+        /// <param name="songPlayed">The song played.</param>
+        /// <returns></returns>
+        public ActionResult PlaySong(int country, int genre, int? songPlayed)
+        {
+            var songs = Repository.GetFilteredSongs(country, genre).ToArray();
+            int randomSongIndex;
+            do
+            {
+                var random = new Random();
+                randomSongIndex = random.Next(0, songs.Length - 1);
+            } while (randomSongIndex == songPlayed);
+
+            ViewBag.Title = Radio;
+            return View(songs[randomSongIndex]);
         }
 
     }

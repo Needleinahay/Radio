@@ -16,10 +16,14 @@ namespace Data_layer
             db = dbContext;
         }
 
+        /// <summary>
+        /// Gets the main page.
+        /// </summary>
+        /// <returns></returns>
         public MainPageVM GetMainPage()
         {
             var toReturn = new MainPageVM();
-            var CountriesPossible = new List<SelectListItem>();
+            var countriesPossible = new List<SelectListItem>();
             foreach (var country in db.Countries)
             {
                 var item = new SelectListItem
@@ -28,9 +32,9 @@ namespace Data_layer
                     Text = country.CountryName,
                     Selected = false
                 };
-                CountriesPossible.Add(item);
+                countriesPossible.Add(item);
             }
-            var GenresPossible = new List<SelectListItem>();
+            var genresPossible = new List<SelectListItem>();
             foreach (var genre in db.Genres)
             {
                 var item = new SelectListItem
@@ -39,16 +43,22 @@ namespace Data_layer
                     Text = genre.NameOfGenre,
                     Selected = false
                 };
-                GenresPossible.Add(item);
+                genresPossible.Add(item);
             }
-            toReturn.Countries = CountriesPossible;
-            toReturn.Genres = GenresPossible;
+            toReturn.Countries = countriesPossible;
+            toReturn.Genres = genresPossible;
             return toReturn;
         }
 
+        /// <summary>
+        /// Gets the filtered songs.
+        /// </summary>
+        /// <param name="country">The country.</param>
+        /// <param name="genre">The genre.</param>
+        /// <returns></returns>
         public IEnumerable<Song> GetFilteredSongs(int country, int genre)
         {
-            var songs = db.Songs.Where(x => x.Author.Country.CountryId == country && x.)
+            return db.Songs.Where(x => x.Author.Country.CountryId == country && x.Author.Genre.GenreId == genre);
         }
         
     }

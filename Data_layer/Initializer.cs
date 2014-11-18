@@ -8,7 +8,7 @@ using Models;
 
 namespace Data_layer
 {
-    public class Initializer : DropCreateDatabaseAlways<RadioContext>
+    public class Initializer : DropCreateDatabaseIfModelChanges<RadioContext>
     {
         protected override void Seed(RadioContext context)
         {
