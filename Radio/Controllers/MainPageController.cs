@@ -4,23 +4,47 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Data_layer;
+using Models;
 
 namespace Radio.Controllers
 {
     public class MainPageController : Controller
     {
-        private Repository repository;
+        #region Fields
+
+        private readonly Repository _repository;
+
+        #endregion
+
+        #region Properties
+
+        private Repository Repository
+        {
+            get { return _repository; }
+        }
+
+        #endregion
+
+        #region Ctor
+
         public MainPageController()
         {
-            repository = new Repository(new RadioContext());
+            _repository = new Repository(new RadioContext());
         }
-        //
-        // GET: /MainPage/
+
+        #endregion
+
 
         public ActionResult Index()
         {
-            var toView = repository.GetMainPage();
-            return View(toView);
+            return View(Repository.GetMainPage());
+        }
+
+        [HttpPost]
+        public ActionResult Index(MainPageVM parameters)
+        {
+            var songs = Repository.GetFilteredSongs(parameters.CountrySelected, parameters.GenreSelected);
+            return View();
         }
 
     }

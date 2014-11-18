@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Models;
 
 namespace Data_layer
@@ -17,10 +18,38 @@ namespace Data_layer
 
         public MainPageVM GetMainPage()
         {
-            MainPageVM toReturn = new MainPageVM();
-            toReturn.Countries = db.Countries.ToList();
-            toReturn.Genres = db.Genres.ToList();
+            var toReturn = new MainPageVM();
+            var CountriesPossible = new List<SelectListItem>();
+            foreach (var country in db.Countries)
+            {
+                var item = new SelectListItem
+                {
+                    Value = country.CountryId.ToString(),
+                    Text = country.CountryName,
+                    Selected = false
+                };
+                CountriesPossible.Add(item);
+            }
+            var GenresPossible = new List<SelectListItem>();
+            foreach (var genre in db.Genres)
+            {
+                var item = new SelectListItem
+                {
+                    Value = genre.GenreId.ToString(),
+                    Text = genre.NameOfGenre,
+                    Selected = false
+                };
+                GenresPossible.Add(item);
+            }
+            toReturn.Countries = CountriesPossible;
+            toReturn.Genres = GenresPossible;
             return toReturn;
         }
+
+        public IEnumerable<Song> GetFilteredSongs(int country, int genre)
+        {
+            var songs = db.Songs.Where(x => x.Author.Country.CountryId == country && x.)
+        }
+        
     }
 }
