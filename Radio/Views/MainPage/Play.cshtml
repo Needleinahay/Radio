@@ -1,0 +1,46 @@
+﻿@model Models.MainPageVM
+
+<table>
+    <tr>
+        <td style="vertical-align: top">
+            <p>
+                <h2>Playing...</h2>
+            </p>
+            <p>
+                <h2>@Model.Title - @Model.SongName</h2>
+            </p>
+            <audio controls autoplay src=@Model.SongPath></audio>
+            <p>
+                @using (Html.BeginForm())
+                {
+                    @Html.HiddenFor(model => model.CountrySelected)
+                    @Html.HiddenFor(model => model.GenreSelected)
+                    @Html.HiddenFor(model => model.SongPlayed)
+                    <input type="submit" value="Next" />
+                <p>
+                    <h2>Rate this song:</h2>
+                </p>
+                <p>
+                    @Html.DropDownListFor(x => x.RatesSelected, Model.Rates, "- Select -")
+                </p>
+                }
+
+                </p>
+            </td>
+            <td>
+                <p>
+                    <h2>@Model.Title</h2>
+                </p>
+                <p>
+                    @Model.Link
+                </p>
+                <p>
+                    <img src="@Model.PicturePath" width="150" />
+                </p>
+                <p>
+                    @Model.BasicInfo
+                </p>
+            </td>
+        </tr>
+    </table>
+

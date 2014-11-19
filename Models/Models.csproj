@@ -48,6 +48,7 @@
     <Compile Include="Genre.cs" />
     <Compile Include="MainPageVM.cs" />
     <Compile Include="Picture.cs" />
+    <Compile Include="PlayVM.cs" />
     <Compile Include="Producer.cs" />
     <Compile Include="ProducerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

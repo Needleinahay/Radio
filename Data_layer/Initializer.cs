@@ -15,29 +15,62 @@ namespace Data_layer
 
             #region Setting songs
 
+            RateRules oneRate = new RateRules
+            {
+                PeopleListenedToAnd = 0,
+                RatingGivedByListener = 0,
+                PeopleListenedHalfWay = 0
+            };
+            RateRules twoRate = new RateRules
+            {
+                PeopleListenedToAnd = 0,
+                RatingGivedByListener = 0,
+                PeopleListenedHalfWay = 0
+            };
+            RateRules threeRate = new RateRules
+            {
+                PeopleListenedToAnd = 0,
+                RatingGivedByListener = 0,
+                PeopleListenedHalfWay = 0
+            };
+            RateRules fourRate = new RateRules
+            {
+                PeopleListenedToAnd = 0,
+                RatingGivedByListener = 0,
+                PeopleListenedHalfWay = 0
+            };
+            context.RateRuleses.Add(oneRate);
+            context.RateRuleses.Add(twoRate);
+            context.RateRuleses.Add(threeRate);
+            context.RateRuleses.Add(fourRate);
+
             Song one = new Song
                 {
                     Notes = "Some notes",
                     Title = "My song",
-                    SongPath = "/Content/1.mp3"
+                    SongPath = "/Content/1.mp3",
+                    RateRules = oneRate
                 };
             Song two = new Song
                 {
                     Notes = "Some notes!!",
                     Title = "My second song",
-                    SongPath = "/Content/2.mp3"
+                    SongPath = "/Content/2.mp3",
+                    RateRules = twoRate
                 };
             Song three = new Song
                 {
                     Notes = "Some notes!!",
                     Title = "My second song",
-                    SongPath = "/Content/01.mp3"
+                    SongPath = "/Content/01.mp3",
+                    RateRules = threeRate
                 };
             Song four = new Song
                 {
                     Notes = "Some notes!!",
                     Title = "My second song",
-                    SongPath = "/Content/02.mp3"
+                    SongPath = "/Content/02.mp3",
+                    RateRules = fourRate
                 };
             context.Songs.Add(one);
             context.Songs.Add(two);

@@ -223,7 +223,7 @@
     <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\Test\Delete.cshtml" />
     <Content Include="Views\MainPage\Index.cshtml" />
-    <Content Include="Views\MainPage\PlaySong.cshtml" />
+    <Content Include="Views\MainPage\Play.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,25 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace Models
 {
-    public class MainPageVM
+    public class PlayVM
     {
-        public List<SelectListItem> Genres { get; set; }
-
-        [Display(Name = "Countries of authors")]
-        public List<SelectListItem> Countries { get; set; }
-
-
-        [Required(ErrorMessage = "Please choose the genre")]
-        public int GenreSelected { get; set; }
-
-        [Required(ErrorMessage = "Please choose the country")]
         public int CountrySelected { get; set; }
-
-        public int? SongPlayed { get; set; }
+        public int GenreSelected { get; set; }
         public string SongPath { get; set; }
+        public int SongPlayed { get; set; }
 
         public string PicturePath { get; set; }
         public string Title { get; set; }

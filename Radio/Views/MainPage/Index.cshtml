@@ -1,6 +1,6 @@
 ﻿@model Models.MainPageVM
 <h2>What should I play?</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Play", "MainPage"))
 {
     <p>
         @Html.LabelFor(x => x.Countries)

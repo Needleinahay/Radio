@@ -12,6 +12,7 @@ namespace Data_layer
         public DbSet<Country> Countries { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<RateRules> RateRuleses { get; set; }
 
     }
 }

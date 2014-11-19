@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Data_layer;
@@ -48,36 +49,38 @@ namespace Radio.Controllers
             return View(Repository.GetMainPage());
         }
 
-        /// <summary>
-        /// Indexes the specified parameters.
-        /// </summary>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult Index(MainPageVM parameters)
-        {
-            return RedirectToAction(PlaySong(parameters.CountrySelected, parameters.GenreSelected, null).ToString());
-        }
 
-        /// <summary>
-        /// Plays the song.
-        /// </summary>
-        /// <param name="country">The country.</param>
-        /// <param name="genre">The genre.</param>
-        /// <param name="songPlayed">The song played.</param>
-        /// <returns></returns>
-        public ActionResult PlaySong(int country, int genre, int? songPlayed)
+        [HttpPost]
+        public ActionResult Play(MainPageVM mainPage)
         {
-            var songs = Repository.GetFilteredSongs(country, genre).ToArray();
+            var songs = Repository.GetFilteredSongs(mainPage.CountrySelected, mainPage.GenreSelected).ToArray();
+            var random = new Random();
             int randomSongIndex;
             do
             {
-                var random = new Random();
-                randomSongIndex = random.Next(0, songs.Length - 1);
-            } while (randomSongIndex == songPlayed);
+                randomSongIndex = random.Next(0, songs.Length);
+            } while (randomSongIndex == mainPage.SongPlayed);
+
+            var songViewModel = new MainPageVM
+            {
+                BasicInfo = songs[randomSongIndex].Author.GeneralInfo,
+                PicturePath = songs[randomSongIndex].Author.Picture.PicturePath,
+                SongPath = songs[randomSongIndex].SongPath,
+                Title = songs[randomSongIndex].Author.Title,
+                SongName = songs[randomSongIndex].Title,
+                CountrySelected = mainPage.CountrySelected,
+                Link = songs[randomSongIndex].Author.LinkToSource,
+
+                GenreSelected = mainPage.GenreSelected,
+                SongPlayed = randomSongIndex,
+                Rates = Repository.GetRates()
+            };
+
+            if (mainPage.RatesSelected != 0)
+                Repository.SaveRateRules(mainPage.SongPlayed, mainPage.RatesSelected);
 
             ViewBag.Title = Radio;
-            return View(songs[randomSongIndex]);
+            return View(songViewModel);
         }
 
     }
