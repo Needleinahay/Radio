@@ -11,6 +11,11 @@ namespace Data_layer
     public class Repository
     {
         private RadioContext db;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Repository"/> class.
+        /// </summary>
+        /// <param name="dbContext">The database context.</param>
         public Repository(RadioContext dbContext)
         {
             db = dbContext;
@@ -62,6 +67,10 @@ namespace Data_layer
         }
 
 
+        /// <summary>
+        /// Gets the rates.
+        /// </summary>
+        /// <returns></returns>
         public List<SelectListItem> GetRates()
         {
             var ratesPossible = new List<SelectListItem>();
@@ -98,6 +107,11 @@ namespace Data_layer
             return ratesPossible;
         }
 
+        /// <summary>
+        /// Saves the rate rules.
+        /// </summary>
+        /// <param name="songId">The song identifier.</param>
+        /// <param name="rateRules">The rate rules.</param>
         public void SaveRateRules(int? songId, int rateRules)
         {
             if (songId != null)
@@ -108,6 +122,10 @@ namespace Data_layer
             }
         }
 
+        /// <summary>
+        /// Saves the author.
+        /// </summary>
+        /// <param name="author">The author.</param>
         public void SaveAuthor(Author author)
         {
             if (author != null)
@@ -117,6 +135,11 @@ namespace Data_layer
             }
         }
 
+        /// <summary>
+        /// Gets the author.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public Author GetAuthor(int id)
         {
             return db.Authors.Find(id);

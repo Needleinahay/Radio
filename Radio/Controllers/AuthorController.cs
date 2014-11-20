@@ -35,6 +35,9 @@ namespace Radio.Controllers
 
         #region Ctor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorController"/> class.
+        /// </summary>
         public AuthorController()
         {
             _repository = new Repository(new RadioContext());
@@ -42,45 +45,78 @@ namespace Radio.Controllers
 
         #endregion
 
-      
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             var mainPage = Repository.GetMainPage();
             CreateAuthorVM createAuthorVM = new CreateAuthorVM();
-            createAuthorVM.Author = new Author();
             createAuthorVM.Countries = mainPage.Countries;
             createAuthorVM.Genres = mainPage.Genres;
             return View(createAuthorVM);
         }
 
-        //
-        // POST: /Author/Create
 
+        /// <summary>
+        /// Creates the specified author.
+        /// </summary>
+        /// <param name="author">The author.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateAuthorVM author)
         {
-            Repository.SaveAuthor(author.Author);
-            return View(author);
+            Author auth = new Author
+                {
+                    Email = author.Email,
+                    Password = author.Password,
+                    CountryId = author.Country,
+                    GenreId = author.Genre,
+                    GeneralInfo = author.GeneralInfo,
+                    LinkToSource = author.Link,
+                    Name = author.Name
+                };
+            //Repository.SaveAuthor(auth);
+            return RedirectToAction("Details", auth);
         }
 
-        //
-        // GET: /Author/Edit/5
+        public ActionResult Details(Author author)
+        {
+            return View(author);
+        }
+        /// <summary>
+        /// Logins this instance.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Login()
+        {
+            return View(new CreateAuthorVM());
+        }
 
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public ActionResult Edit(int id = 0)
         {
             return View(Repository.GetAuthor(id));
         }
 
-        //
-        // POST: /Author/Edit/5
 
+        /// <summary>
+        /// Edits the specified author.
+        /// </summary>
+        /// <param name="author">The author.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Author author)
         {
-            Repository.SaveAuthor(author);
-            return View(author);
+            //Repository.SaveAuthor(author);
+            return RedirectToAction("Details", author);
         }
 
     }

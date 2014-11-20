@@ -50,6 +50,11 @@ namespace Radio.Controllers
         }
 
 
+        /// <summary>
+        /// Plays the specified main page.
+        /// </summary>
+        /// <param name="mainPage">The main page.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Play(MainPageVM mainPage)
         {

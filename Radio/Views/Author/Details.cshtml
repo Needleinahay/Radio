@@ -4,68 +4,67 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Personal page</h2>
 
 <fieldset>
     <legend>Author</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+        <h3>@Html.DisplayNameFor(model => model.Name)</h3>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Password)
+        <h3>@Html.DisplayNameFor(model => model.Password)</h3>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Password)
+       @Html.DisplayFor(model => model.Password)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Email)
+        <h3>@Html.DisplayNameFor(model => model.Email)</h3> 
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Email)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
+       <h3>@Html.DisplayNameFor(model => model.Title)</h3>  
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Title)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.GeneralInfo)
+       <h3>@Html.DisplayNameFor(model => model.GeneralInfo)</h3> 
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.GeneralInfo)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.LinkToSource)
+        <h3>@Html.DisplayNameFor(model => model.LinkToSource)</h3> 
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.LinkToSource)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.GenreId)
+       <h3>@Html.DisplayNameFor(model => model.GenreId)</h3> 
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.GenreId)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.CountryId)
+        @Html.DisplayNameFor(model => model.CountryId)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CountryId)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.AuthorId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorId }) |
 </p>

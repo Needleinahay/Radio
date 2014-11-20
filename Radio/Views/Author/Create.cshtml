@@ -13,67 +13,67 @@
         <legend>Author</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.Password)
+            @Html.LabelFor(model => model.Password)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author.Password)
-            @Html.ValidationMessageFor(model => model.Author.Password)
+            @Html.PasswordFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.Email)
+            @Html.LabelFor(model => model.Email)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author.Email)
-            @Html.ValidationMessageFor(model => model.Author.Email)
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.Title)
+            @Html.LabelFor(model => model.Title)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author.Title)
-            @Html.ValidationMessageFor(model => model.Author.Title)
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.Name)
+            @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author.Name)
-            @Html.ValidationMessageFor(model => model.Author.Name)
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.GeneralInfo)
+            @Html.LabelFor(model => model.GeneralInfo)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author.GeneralInfo)
-            @Html.ValidationMessageFor(model => model.Author.GeneralInfo)
+            @Html.EditorFor(model => model.GeneralInfo)
+            @Html.ValidationMessageFor(model => model.GeneralInfo)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.LinkToSource)
+            @Html.LabelFor(model => model.Link)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author.LinkToSource)
-            @Html.ValidationMessageFor(model => model.Author.LinkToSource)
+            @Html.EditorFor(model => model.Link)
+            @Html.ValidationMessageFor(model => model.Link)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.GenreId)
+            @Html.LabelFor(model => model.Genre)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Author.GenreId, Model.Genres, "- Select -")
-            @Html.ValidationMessageFor(model => model.Author.GenreId)
+            @Html.DropDownListFor(model => model.Genre, Model.Genres, "- Select -")
+            @Html.ValidationMessageFor(model => model.Genre)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author.CountryId)
+            @Html.LabelFor(model => model.Country)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Author.CountryId, Model.Countries, "- Select -")
-            @Html.ValidationMessageFor(model => model.Author.CountryId)
+            @Html.DropDownListFor(model => model.Country, Model.Countries, "- Select -")
+            @Html.ValidationMessageFor(model => model.Country)
         </div>
 
         <p>
