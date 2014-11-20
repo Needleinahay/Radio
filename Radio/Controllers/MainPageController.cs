@@ -54,25 +54,30 @@ namespace Radio.Controllers
         public ActionResult Play(MainPageVM mainPage)
         {
             var songs = Repository.GetFilteredSongs(mainPage.CountrySelected, mainPage.GenreSelected).ToArray();
+            var sogsIds = songs.Select(x => x.SongId).ToArray();
             var random = new Random();
-            int randomSongIndex;
+            int randomSongId;
             do
             {
-                randomSongIndex = random.Next(0, songs.Length);
-            } while (randomSongIndex == mainPage.SongPlayed);
+                var randomSongIndex = random.Next(0, sogsIds.Length);
+                randomSongId = sogsIds[randomSongIndex];
+
+            } while (randomSongId == mainPage.SongPlayed);
+
+            var songChosen = songs.FirstOrDefault(x => x.SongId == randomSongId);
 
             var songViewModel = new MainPageVM
             {
-                BasicInfo = songs[randomSongIndex].Author.GeneralInfo,
-                PicturePath = songs[randomSongIndex].Author.Picture.PicturePath,
-                SongPath = songs[randomSongIndex].SongPath,
-                Title = songs[randomSongIndex].Author.Title,
-                SongName = songs[randomSongIndex].Title,
+                BasicInfo = songChosen.Author.GeneralInfo,
+                PicturePath = songChosen.Author.Picture.PicturePath,
+                SongPath = songChosen.SongPath,
+                Title = songChosen.Author.Title,
+                SongName = songChosen.Title,
                 CountrySelected = mainPage.CountrySelected,
-                Link = songs[randomSongIndex].Author.LinkToSource,
+                Link = songChosen.Author.LinkToSource,
 
                 GenreSelected = mainPage.GenreSelected,
-                SongPlayed = randomSongIndex,
+                SongPlayed = randomSongId,
                 Rates = Repository.GetRates()
             };
 

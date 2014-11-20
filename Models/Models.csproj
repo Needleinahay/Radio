@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="CreateAuthorVM.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="MainPageVM.cs" />
     <Compile Include="Picture.cs" />

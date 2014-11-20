@@ -107,5 +107,19 @@ namespace Data_layer
                 db.SaveChanges();
             }
         }
+
+        public void SaveAuthor(Author author)
+        {
+            if (author != null)
+            {
+                db.Authors.Add(author);
+                db.SaveChanges();
+            }
+        }
+
+        public Author GetAuthor(int id)
+        {
+            return db.Authors.Find(id);
+        }
     }
 }

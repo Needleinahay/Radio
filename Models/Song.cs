@@ -6,6 +6,8 @@ namespace Models
     public class Song
     {
         public int SongId { get; set; }
+
+        [Required(ErrorMessage = "Title is required")]
         public string Title { get; set; }
         public string Notes { get; set; }
         public string SongPath { get; set; }

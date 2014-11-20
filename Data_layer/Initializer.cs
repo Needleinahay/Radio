@@ -164,6 +164,7 @@ namespace Data_layer
             context.Authors.Add(new Author
                 {
                     Email = "Test@test.com",
+                    Password = "Password",
                     GeneralInfo = "General Info place...",
                     Title = "The Band!",
                     LinkToSource = "http://band.com",
@@ -177,6 +178,7 @@ namespace Data_layer
             context.Authors.Add(new Author
                 {
                     Email = "Tesdet@test.com",
+                    Password = "Password",
                     GeneralInfo = "General Info place...",
                     Title = "Band 2",
                     LinkToSource = "http://2band.com",
@@ -189,6 +191,7 @@ namespace Data_layer
             context.Authors.Add(new Author
                 {
                     Email = "Tesddet@test.com",
+                    Password = "Password",
                     GeneralInfo = "General Info place...",
                     Title = "Band 3",
                     LinkToSource = "http://3band.com",
@@ -206,6 +209,7 @@ namespace Data_layer
             context.Producers.Add(new Producer
                 {
                     Email = "producer@email.com",
+                    Password = "123",
                     PhoneNumber = "2345456",
                     FirstName = "This",
                     LastName = "Producer",
